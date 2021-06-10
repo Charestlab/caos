@@ -2,8 +2,8 @@ from os.path import join, expanduser
 import nibabel, nilearn.image, pandas, numpy
 from templateflow import api as tflow_api
 from analysis.glm import make_design, whiten_data, fit_glm
-from pyrsa.data.dataset import Dataset
-from pyrsa.rdm.calc import calc_rdm
+from rsatoolbox.data.dataset import Dataset
+from rsatoolbox.rdm.calc import calc_rdm
 
 # The atlas namings correspond to the original FSL’s acronyms for them (
 # HOCPA=Harvard-Oxford Cortical Probabilistic Atlas; 

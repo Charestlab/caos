@@ -3,4 +3,4 @@ nibabel
 pandas
 glmdenoise==0.0.5
 templateflow
-rsa3==3.0.0.post20201106
+rsatoolbox
