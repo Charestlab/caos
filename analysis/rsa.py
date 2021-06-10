@@ -2,8 +2,10 @@ from os.path import join, expanduser
 import nibabel, nilearn.image, pandas, numpy
 from templateflow import api as tflow_api
 from analysis.glm import make_design, whiten_data, fit_glm
+from analysis.order import en_order
 from rsatoolbox.data.dataset import Dataset
 from rsatoolbox.rdm.calc import calc_rdm
+from rsatoolbox.vis import show_rdm
 
 # The atlas namings correspond to the original FSL’s acronyms for them (
 # HOCPA=Harvard-Oxford Cortical Probabilistic Atlas; 
@@ -78,14 +80,28 @@ betas = fit_glm(wdata, wdesign)
 # Out[4]: 9.616672491255056
 
 ## rsa
+conds = events.entity.to_list()
+
+# betas = numpy.load('betas.npy')
+# betas = numpy.load('betas.npy')
+# conds = numpy.load('conds.npy')
+
+
 datasets = Dataset(
     measurements=betas,
-    obs_descriptors=dict(conds=events.entity.to_list()),
+    obs_descriptors=dict(conds=conds),
     channel_descriptors=dict(regions=atlas)
 ).split_channel('regions')
 rdms = calc_rdm(datasets, descriptor='conds')
 
 ## reorder
-rdms.reorder(new_order)
+rdms.reorder([conds.index(o) for o in en_order])
+show_rdm(rdms)
+
+plt.close('all')
+rdms1 = rdms.subset('regions', 1)
+fig, axes, handles = show_rdm(rdms1, pattern_descriptor='conds', figsize=(12,12), show_colorbar='panel')
+plt.savefig('rdms1.png', dpi=200)
+
 
 
