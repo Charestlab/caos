@@ -10,7 +10,7 @@ from rsatoolbox.data.dataset import Dataset
 # HOSPA=Harvard-Oxford Subcortical Probabilistic Atlas
 # )
 
-sub = 1
+sub = 2
 run = 1
 tr = 1.2
 space = 'MNI152NLin2009cAsym'
