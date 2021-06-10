@@ -2,5 +2,6 @@ Dcm2Bids
 nibabel
 pandas
 glmdenoise==0.0.5
-templateflow
-rsatoolbox
+pybids==0.12.4
+templateflow==0.6.3
+rsatoolbox==0.0.2
